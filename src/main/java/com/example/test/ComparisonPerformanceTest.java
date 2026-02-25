@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @BenchmarkMode({Mode.Throughput, Mode.AverageTime})
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Warmup(iterations = 5, time = 10)
-@Measurement(iterations = 10, time = 10)
+@Measurement(iterations = 5, time = 10)
 @Fork(3)
 @Threads(10)
 public class ComparisonPerformanceTest {
