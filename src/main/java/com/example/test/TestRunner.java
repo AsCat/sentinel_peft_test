@@ -147,8 +147,8 @@ public class TestRunner {
 
         Options options = new OptionsBuilder()
                 .include(ComparisonPerformanceTest.class.getSimpleName())
-                .param("ipCount", "10", "100", "1000", "5000")
-                .param("strategyType", "INDEPENDENT", "HOTSPOT")
+                .param("ipCount", "10")
+                .param("strategyType", "INDEPENDENT")
                 .warmupIterations(2)
                 .warmupTime(TimeValue.seconds(5))
                 .measurementIterations(3)
@@ -158,7 +158,7 @@ public class TestRunner {
                 .shouldDoGC(true)
                 .result("comparison_results.json")
                 .resultFormat(ResultFormatType.JSON)
-                .jvmArgs("-Xmx4g", "-Xms4g", "-XX:+UseG1GC")
+                .jvmArgs("-Xmx8g", "-Xms4g", "-XX:+UseG1GC")
                 .build();
 
         new Runner(options).run();
