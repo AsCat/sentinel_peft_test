@@ -25,13 +25,14 @@ import java.util.concurrent.atomic.AtomicLong;
 @State(Scope.Benchmark)
 @BenchmarkMode({Mode.Throughput, Mode.AverageTime})
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Warmup(iterations = 5, time = 10)
-@Measurement(iterations = 5, time = 10)
+
+@Warmup(iterations = 3, time = 10)
+@Measurement(iterations = 3, time = 10)
 @Fork(3)
 @Threads(10)
 public class ComparisonPerformanceTest {
 
-    @Param({"100", "1000", "5000"})
+    @Param({"10", "100", "1000", "5000"})
     private int ipCount;
 
     @Param({"INDEPENDENT", "HOTSPOT"})
@@ -287,8 +288,7 @@ public class ComparisonPerformanceTest {
         Random random = new Random(42);
 
         for (int i = 0; i < ipCount; i++) {
-            String ip = String.format("192.168.%d.%d",
-                    (i / 256) % 256, i % 256);
+            String ip = String.format("192.168.%d.%d", (i / 256) % 256, i % 256);
             ipAddresses.add(ip);
         }
 
@@ -310,7 +310,7 @@ public class ComparisonPerformanceTest {
     }
 
     @Benchmark
-    @Threads(100)
+    @Threads(10)
     public void testRateLimit(Blackhole blackhole) {
         String ip = ipAddresses.get(ThreadLocalRandom.current().nextInt(ipCount));
 
@@ -368,7 +368,8 @@ public class ComparisonPerformanceTest {
     }
 
     private Object processBusiness() {
-        long processTime = 500_000 + ThreadLocalRandom.current().nextLong(1_500_000);
+        // 模拟业务处理，耗时1-5ms，调整为固定10ms
+        long processTime = 10_000_000 ;// + ThreadLocalRandom.current().nextLong(4_000_000);
         long start = System.nanoTime();
         while (System.nanoTime() - start < processTime) {
             // 忙等待

@@ -316,8 +316,8 @@ public class HotspotParamPerformanceTest {
     }
 
     private Object processBusiness() {
-        // 模拟业务处理，耗时1-5ms
-        long processTime = 1_000_000 + ThreadLocalRandom.current().nextLong(4_000_000);
+        // 模拟业务处理，耗时1-5ms，调整为固定10ms
+        long processTime = 10_000_000 ;// + ThreadLocalRandom.current().nextLong(4_000_000);
         long start = System.nanoTime();
         while (System.nanoTime() - start < processTime) {
             // 忙等待模拟处理
