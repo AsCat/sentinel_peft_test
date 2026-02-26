@@ -141,19 +141,19 @@ public class TestRunner {
      */
     public static void runComparisonTest() throws RunnerException {
         System.out.println("配置: 对比独立规则和热点参数方案的性能差异");
-        System.out.println("参数: ipCount = [100, 1000, 5000]");
+        System.out.println("参数: ipCount = [10, 100, 1000, 5000]");
         System.out.println("策略: strategyType = [INDEPENDENT, HOTSPOT]");
-        System.out.println("线程: 100线程并发");
+        System.out.println("线程: 10线程并发");
 
         Options options = new OptionsBuilder()
                 .include(ComparisonPerformanceTest.class.getSimpleName())
-                .param("ipCount", "100", "1000", "5000")
+                .param("ipCount", "10", "100", "1000", "5000")
                 .param("strategyType", "INDEPENDENT", "HOTSPOT")
                 .warmupIterations(2)
                 .warmupTime(TimeValue.seconds(5))
                 .measurementIterations(3)
-                .measurementTime(TimeValue.seconds(10))
-                .threads(100)
+                .measurementTime(TimeValue.seconds(5))
+                .threads(10)
                 .forks(1)
                 .shouldDoGC(true)
                 .result("comparison_results.json")
