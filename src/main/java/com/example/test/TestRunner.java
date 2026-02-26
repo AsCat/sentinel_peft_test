@@ -153,7 +153,7 @@ public class TestRunner {
                 .warmupTime(TimeValue.seconds(5))
                 .measurementIterations(3)
                 .measurementTime(TimeValue.seconds(5))
-                .threads(10)
+                .threads(1)
                 .forks(1)
                 .shouldDoGC(true)
                 .result("comparison_results.json")
