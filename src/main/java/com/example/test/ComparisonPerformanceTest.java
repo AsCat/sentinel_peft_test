@@ -37,7 +37,8 @@ import java.util.concurrent.atomic.AtomicLong;
 @Threads(10)
 public class ComparisonPerformanceTest {
 
-    @Param({"10", "100", "1000", "5000"})
+//    @Param({"10", "100", "1000", "5000"})
+    @Param({"10"})
     private int ipCount;
 
     @Param({"INDEPENDENT", "HOTSPOT"})
