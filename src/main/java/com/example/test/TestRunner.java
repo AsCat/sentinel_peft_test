@@ -143,12 +143,12 @@ public class TestRunner {
         System.out.println("配置: 对比独立规则和热点参数方案的性能差异");
         System.out.println("参数: ipCount = [10, 100, 1000, 5000]");
         System.out.println("策略: strategyType = [INDEPENDENT, HOTSPOT]");
-        System.out.println("线程: 10线程并发");
+        System.out.println("线程: 1线程并发");
 
         Options options = new OptionsBuilder()
                 .include(ComparisonPerformanceTest.class.getSimpleName())
-                .param("ipCount", "10")
-                .param("strategyType", "INDEPENDENT")
+                .param("ipCount", "10", "100", "1000", "5000")
+                .param("strategyType", "INDEPENDENT", "HOTSPOT")
                 .warmupIterations(2)
                 .warmupTime(TimeValue.seconds(5))
                 .measurementIterations(3)
